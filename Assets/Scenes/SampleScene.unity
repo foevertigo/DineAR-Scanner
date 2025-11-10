@@ -2167,8 +2167,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1793647131}
-  - component: {fileID: 1793647132}
+  - component: {fileID: 1793647134}
   - component: {fileID: 1793647133}
+  - component: {fileID: 1793647132}
   m_Layer: 0
   m_Name: WireframeCube
   m_TagString: Untagged
@@ -2212,10 +2213,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793647130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dcae964bce9eb748b06f5d850066d2d, type: 3}
+  m_Script: {fileID: 11500000, guid: dec79976c43db2044a0b51b36e12e511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeSize: 0.05
+  lineMaterial: {fileID: 2100000, guid: df61db2cdc7dc084b882888941080e28, type: 2}
 --- !u!114 &1793647133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,7 +2226,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793647130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b5808a746d08a44e92727d8ad110a72, type: 3}
+  m_Script: {fileID: 11500000, guid: e5a2918ac169a1542877638f4263680b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCube: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+--- !u!114 &1793647134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793647130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e20bbbf923ab334e840972ff29c8b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1953675269

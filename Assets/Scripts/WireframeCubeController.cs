@@ -40,27 +40,50 @@ public class WireframeCubeController : MonoBehaviour
     {
         corners = new Vector3[]
         {
-            new Vector3(-size.x, -size.y, -size.z),
-            new Vector3(size.x, -size.y, -size.z),
-            new Vector3(size.x, size.y, -size.z),
-            new Vector3(-size.x, size.y, -size.z),
-            new Vector3(-size.x, -size.y, size.z),
-            new Vector3(size.x, -size.y, size.z),
-            new Vector3(size.x, size.y, size.z),
-            new Vector3(-size.x, size.y, size.z)
+        new Vector3(-size.x, -size.y, -size.z),
+        new Vector3(size.x, -size.y, -size.z),
+        new Vector3(size.x, size.y, -size.z),
+        new Vector3(-size.x, size.y, -size.z),
+        new Vector3(-size.x, -size.y, size.z),
+        new Vector3(size.x, -size.y, size.z),
+        new Vector3(size.x, size.y, size.z),
+        new Vector3(-size.x, size.y, size.z)
         };
 
-        int[] order = {
-            0,1,2,3,0,4,5,1,5,6,2,6,7,3,7,4
+        int[,] edgesIndex = new int[,]
+        {
+        {0,1}, {1,2}, {2,3}, {3,0},
+        {4,5}, {5,6}, {6,7}, {7,4},
+        {0,4}, {1,5}, {2,6}, {3,7}
         };
 
-        Vector3[] positions = new Vector3[order.Length];
-        for (int i = 0; i < order.Length; i++)
-            positions[i] = corners[order[i]];
+        // Clear previous edges if any
+        foreach (Transform child in transform)
+        {
+            if (child.name.StartsWith("Edge_"))
+                Destroy(child.gameObject);
+        }
 
-        lr.positionCount = positions.Length;
-        lr.SetPositions(positions);
+        // Create 12 new edge objects
+        for (int i = 0; i < 12; i++)
+        {
+            GameObject edge = new GameObject("Edge_" + i);
+            edge.transform.SetParent(transform, false);
+
+            LineRenderer lrEdge = edge.AddComponent<LineRenderer>();
+            lrEdge.positionCount = 2;
+            lrEdge.useWorldSpace = false;
+            lrEdge.startWidth = 0.002f;
+            lrEdge.endWidth = 0.002f;
+            lrEdge.material = lineMaterial;
+            lrEdge.startColor = Color.white;
+            lrEdge.endColor = Color.white;
+            lrEdge.SetPosition(0, corners[edgesIndex[i, 0]]);
+            lrEdge.SetPosition(1, corners[edgesIndex[i, 1]]);
+        }
     }
+
+
 
     void CreateFace(string name, Vector3 center, Vector3 direction)
     {
